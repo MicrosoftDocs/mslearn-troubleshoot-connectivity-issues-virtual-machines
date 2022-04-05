@@ -19,12 +19,6 @@ az network lb probe create \
     --protocol tcp \
     --port 80
 
-az network lb rule update \
-    --lb-name webLoadBalancer \
-    --load-distribution SourceIPProtocol \
-    --name distroHTTPRule \
-    --resource-group $resource 
-
 az network lb rule create \
     --resource-group $resource \
     --lb-name webLoadBalancer \
@@ -32,6 +26,7 @@ az network lb rule create \
     --protocol tcp \
     --frontend-port 80 \
     --backend-port 80 \
+    --load-distribution SourceIPProtocol \
     --frontend-ip-name webFrontEndPool \
     --backend-pool-name webBackEndPool \
     --probe-name webHealthProbe
